@@ -12,7 +12,23 @@ namespace FunctionExTwo
 
         public bool IsPalindrom(int number)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(Convert.ToString(number));
+            string string_number = Convert.ToString(number);
+            if (string_number.Length <= 1)
+            {
+                return true;
+            }
+            else
+            {
+                if (string_number[0] ==  number % 10)
+                {
+                    int new_number = Convert.ToInt32(string_number.Remove(0));
+                    return IsPalindrom(new_number / 10);
+                }
+                else {
+                    return false;
+                }
+            }
 
         }
 
