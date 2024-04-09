@@ -1,5 +1,6 @@
 ﻿using System;
 using FunctionExTwo.Abstract;
+using System.Collections.Generic;
 
 namespace FunctionExTwo
 {
@@ -7,12 +8,24 @@ namespace FunctionExTwo
     {
         public bool IsFromFibonacci(int number)
         {
-            throw new NotImplementedException();
+            int[] fibonacci_list = { 0, 1 };
+            if (number == 0) { return true; }
+            while (fibonacci_list[fibonacci_list.Length - 1] < number)
+            {   
+                int new_first_value = fibonacci_list[1];
+                int new_second_value = fibonacci_list[1] + fibonacci_list[0];
+                fibonacci_list[0] = new_first_value;
+                fibonacci_list[1] = new_second_value;
+                if (fibonacci_list[0] == number || fibonacci_list[1] == number) 
+                { 
+                   return true; 
+                }
+            }
+            return false;
         }
 
         public bool IsPalindrom(int number)
         {
-            Console.WriteLine(Convert.ToString(number));
             string string_number = Convert.ToString(number);
             if (string_number.Length <= 1)
             {
@@ -20,12 +33,15 @@ namespace FunctionExTwo
             }
             else
             {
-                if (string_number[0] ==  number % 10)
-                {
-                    int new_number = Convert.ToInt32(string_number.Remove(0));
-                    return IsPalindrom(new_number / 10);
+                if (string_number[0] == string_number[string_number .Length- 1])
+                {   
+                     string_number = string_number.Substring(1,string_number.Length - 2);
+                    string_number = string_number.Substring(0);
+                    int returned_number = int.Parse(string_number);
+                    return IsPalindrom(returned_number);
                 }
-                else {
+                else 
+                {
                     return false;
                 }
             }
