@@ -47,10 +47,18 @@ namespace FunctionExTwo
             }
 
         }
+        
 
         public int RecursivePower(int x, int y)
         {
-            throw new NotImplementedException();
+            if (y <= 1)
+            {
+                return x;
+            }
+            else 
+            {
+                return x * RecursivePower(x, y - 1);
+            }
         }
     }
 }
